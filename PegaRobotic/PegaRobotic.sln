@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{B45C44CD-E95B-43EF-AF7C-4D25776FBF5E}") = "PegaRoboticUSPS_Bot", "PegaRoboticUSPS_Bot\PegaRoboticUSPS_Bot.osproj", "{FA58291E-AC65-4ECF-A336-0998004555CB}"
+EndProject
+Project("{B45C44CD-E95B-43EF-AF7C-4D25776FBF5E}") = "PegaRoboticUSPS_Process", "PegaRoboticUSPS_Process\PegaRoboticUSPS_Process.osproj", "{B84D725F-A6A5-4446-8514-C95278D84CCF}"
+EndProject
+Project("{B45C44CD-E95B-43EF-AF7C-4D25776FBF5E}") = "PegaUtility", "PegaUtility\PegaUtility.osproj", "{95CBEC6D-A191-4D58-BDEC-8C3F7C779BD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA58291E-AC65-4ECF-A336-0998004555CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA58291E-AC65-4ECF-A336-0998004555CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA58291E-AC65-4ECF-A336-0998004555CB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FA58291E-AC65-4ECF-A336-0998004555CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA58291E-AC65-4ECF-A336-0998004555CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B84D725F-A6A5-4446-8514-C95278D84CCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B84D725F-A6A5-4446-8514-C95278D84CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B84D725F-A6A5-4446-8514-C95278D84CCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B84D725F-A6A5-4446-8514-C95278D84CCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95CBEC6D-A191-4D58-BDEC-8C3F7C779BD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95CBEC6D-A191-4D58-BDEC-8C3F7C779BD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95CBEC6D-A191-4D58-BDEC-8C3F7C779BD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95CBEC6D-A191-4D58-BDEC-8C3F7C779BD9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
