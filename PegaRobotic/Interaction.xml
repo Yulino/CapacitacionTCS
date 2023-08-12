@@ -117,7 +117,10 @@
 	<Activities>
 		<Activity Name="AC_USPS" RequiresInteraction="false">
 			<Value Name="strException" Type="string"/>
-		</Activity>		
+		</Activity>	
+<Activity Name="AC_Pega" RequiresInteraction="false">
+			<Value Name="strException" Type="string"/>
+		</Activity>			
 	</Activities>
 
 	<!--  Plug-ins are HTML user interface sections in the toolbar. Agile Desktop includes these plug-ins:

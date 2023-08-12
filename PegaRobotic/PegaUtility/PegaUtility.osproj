@@ -126,6 +126,10 @@
       <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.Threading.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Pega.Controls, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
+      <HintPath>$(PEGA_STUDIO_PATH)\Pega.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Pega.Interop, Version=10.0.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
       <HintPath>$(PEGA_STUDIO_PATH)\Pega.Interop.dll</HintPath>
       <Private>False</Private>
@@ -159,6 +163,9 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Data">

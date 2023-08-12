@@ -11,7 +11,8 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Globalization;
-
+using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace Dynamic.Script_8DB990CF54D0282
 {
@@ -21,6 +22,24 @@ namespace Dynamic.Script_8DB990CF54D0282
     [OpenSpan.Design.ComponentIdentityAttribute("Script-8DB990CF54D0282")]
     public sealed class Script
     {
+        public string GetUrl(string texto)
+        {
+            // Validate URL
+            Regex validateDateRegex = new Regex("^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$");
+            Console.WriteLine(validateDateRegex.IsMatch("https://uibakery.io"));  // prints True
+
+            // Extract URL from a string
+            Regex extractDateRegex = new Regex("https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)");
+            string[] extracted = extractDateRegex.Matches(texto)
+                .Cast<Match>()
+                .Select(m => m.Value)
+                .ToArray();
+            string result = String.Join(",", extracted); // prints https://uibakery.io
+
+
+
+            return result;
+        }
         public void GetExcel(string pathExcel, out System.Data.DataTable dtRegistros)
         {
             DataTable dt = new DataTable();
@@ -52,6 +71,7 @@ namespace Dynamic.Script_8DB990CF54D0282
                 //excel is not zero based!!
                 for (int i = 2; i <= rowCount; i++)
                 {
+                    
                     DataRow row = dt.NewRow();
                     row["ID"] = i - 1;
                     row["IDIOMA"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 2]).Value2.ToString();
@@ -64,6 +84,7 @@ namespace Dynamic.Script_8DB990CF54D0282
                     row["RESPUESTA 2"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 9]).Value2.ToString();
                     row["TIPO CUENTA"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 10]).Value2.ToString();
                     dt.Rows.Add(row);
+
                 }
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
@@ -78,6 +99,67 @@ namespace Dynamic.Script_8DB990CF54D0282
             catch (Exception ex)
             {
 
+            }
+        }
+        private void PutToClipboard(System.Drawing.Image Pic)
+        {
+            Clipboard.SetImage(Pic);
+        }
+        public void TakeScreenShotToDoc(string strDocument)
+        {
+            if (!File.Exists(strDocument))
+                File.Create(strDocument).Dispose();
+
+            Microsoft.Office.Interop.Word.Application WordApp = new Microsoft.Office.Interop.Word.Application();
+            Microsoft.Office.Interop.Word.Document doc = WordApp.Documents.Open(strDocument);
+
+            try
+            {
+                object pageBookmark = "\\endofdoc";
+                Microsoft.Office.Interop.Word.Range range = doc.Bookmarks.get_Item(ref pageBookmark).Range;
+
+                Bitmap printscreen = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+                Graphics graphics = Graphics.FromImage(printscreen as Image);
+                graphics.CopyFromScreen(0, 0, 0, 0, printscreen.Size);
+
+                System.Threading.Thread _thread = new System.Threading.Thread(() => PutToClipboard(printscreen));
+
+                _thread.SetApartmentState(System.Threading.ApartmentState.STA);
+                _thread.Start();
+
+                System.Threading.Thread.Sleep(300);
+                range.Paste();
+                System.Threading.Thread.Sleep(300);
+
+                _thread.Abort();
+
+                doc.SaveAs(strDocument, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                    Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+                doc.Close(null, null, null);
+                WordApp.Quit(Type.Missing, Type.Missing, Type.Missing);
+
+                _thread.Abort();
+
+                doc = null;
+                WordApp = null;
+
+                GC.Collect();
+
+                System.Threading.Thread.Sleep(1000);
+
+
+            }
+            catch (Exception)
+            {
+                doc.Close();
+                WordApp.Quit(Type.Missing, Type.Missing, Type.Missing);
+
+
+                if (doc != null)
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(doc);
+                if (WordApp != null)
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(WordApp);
             }
         }
 

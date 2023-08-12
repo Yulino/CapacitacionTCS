@@ -42,7 +42,7 @@
   <Component Version="1.0">
     <OpenSpan.Adapters.Web.Universal.UniversalWebAdapter Name="WebUSPS_CH" Id="UniversalWebAdapter-8DB98C58C657451">
       <StartOnProjectStart Value="False" />
-      <StartPage Value="https://reg.usps.com/entreg/RegistrationAction_input" />
+      <StartPage Value="https://es-reg.usps.com/register" />
       <Content Name="Controls">
         <Items>
           <OpenSpan.Adapters.Web.WebBase.Controls.WebPage Name="WebUSPS_Register" Id="WebPage-8DB98CDF6EB3248">
@@ -730,13 +730,9 @@
             </Content>
             <Content Name="MatchRules">
               <Items>
-                <OpenSpan.Adapters.Web.WebBase.MatchRules.VirtualPropertyMatchRule Name="virtualPropertyMatchRule1" Id="VirtualPropertyMatchRule-8DB98CDF6F045F7">
-                  <PropertyName Value="url" />
-                  <Text Value="Simple|True|(User Culture)|https://reg.usps.com/entreg/RegistrationAction_input" />
-                </OpenSpan.Adapters.Web.WebBase.MatchRules.VirtualPropertyMatchRule>
-                <OpenSpan.Adapters.Web.WebBase.MatchRules.VirtualPropertyMatchRule Name="virtualPropertyMatchRule2" Id="VirtualPropertyMatchRule-8DB98CDF6F524DF">
-                  <PropertyName Value="title" />
-                  <Text Value="Simple|True|(User Culture)|USPS.com® - Register for an online account" />
+                <OpenSpan.Adapters.Web.WebBase.MatchRules.VirtualPropertyMatchRule Name="virtualPropertyMatchRule2" Id="VirtualPropertyMatchRule-8DB9AACF8A88067">
+                  <PropertyName Value="domain" />
+                  <Text Value="Contains|True|(User Culture)|reg.usps.com" />
                 </OpenSpan.Adapters.Web.WebBase.MatchRules.VirtualPropertyMatchRule>
               </Items>
             </Content>

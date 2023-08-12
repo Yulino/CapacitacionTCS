@@ -85,6 +85,18 @@
       <Private>False</Private>
       <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.Adapters.dll</HintPath>
     </Reference>
+    <Reference Include="OpenSpan.Adapters.ActiveX, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
+      <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.Adapters.ActiveX.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="OpenSpan.Adapters.DotNet, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
+      <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.Adapters.DotNet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="OpenSpan.Adapters.DotNet.Interfaces, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
+      <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.Adapters.DotNet.Interfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="OpenSpan.Adapters.Virtual">
       <Private>False</Private>
       <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.Adapters.Virtual.dll</HintPath>
@@ -121,6 +133,10 @@
       <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.Interactions.Controls.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="OpenSpan.OCR">
+      <Private>False</Private>
+      <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.OCR.dll</HintPath>
+    </Reference>
     <Reference Include="OpenSpan.OCR, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
       <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.OCR.dll</HintPath>
       <Private>False</Private>
@@ -145,6 +161,10 @@
       <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.Threading.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="OpenSpan.TranslatorIpc, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
+      <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.TranslatorIpc.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="OpenSpan.Virtual.Interfaces, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
       <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.Virtual.Interfaces.dll</HintPath>
       <Private>False</Private>
@@ -153,8 +173,16 @@
       <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.Virtual.Web.Interfaces.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Pega.Controls, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
+      <HintPath>$(PEGA_STUDIO_PATH)\Pega.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Pega.Interop, Version=10.0.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
       <HintPath>$(PEGA_STUDIO_PATH)\Pega.Interop.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Pega.IPC.Interop, Version=10.0.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
+      <HintPath>$(PEGA_STUDIO_PATH)\Pega.IPC.Interop.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Pega.IPC.Services, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
@@ -224,7 +252,9 @@
   <ItemGroup>
     <Folder Include="Adaptador" />
     <Folder Include="Activities" />
+    <Folder Include="Adaptador\Pega" />
     <Folder Include="Procedures" />
+    <Folder Include="Procedures\Pega" />
     <Folder Include="Properties\" />
     <Folder Include="Public Automations" />
   </ItemGroup>
@@ -233,13 +263,29 @@
     <EmbeddedResource Include="Properties\MessageManifest.resx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\AC_Pega.os">
+      <SubType>Component</SubType>
+      <Id>Automator-8DB9A876CB858E4</Id>
+    </Compile>
     <Compile Include="Activities\AC_USPS.os">
       <SubType>Component</SubType>
       <Id>Automator-8DB98CF28EA6485</Id>
     </Compile>
+    <Compile Include="Adaptador\Pega\AppPega.os">
+      <SubType>Component</SubType>
+      <Id>WindowsAdapter-8DB9A9BB71D5C85</Id>
+    </Compile>
     <Compile Include="Adaptador\WebUSPS_CH.os">
       <SubType>Component</SubType>
       <Id>UniversalWebAdapter-8DB98C58C657451</Id>
+    </Compile>
+    <Compile Include="Procedures\Pega\Pega_P_Main.os">
+      <SubType>Component</SubType>
+      <Id>Automator-8DB9A83D23AB3FA</Id>
+    </Compile>
+    <Compile Include="Procedures\Pega\Pega_P_Start.os">
+      <SubType>Component</SubType>
+      <Id>Automator-8DB9A83A483FDD5</Id>
     </Compile>
     <Compile Include="Procedures\USPS_Registro.os">
       <SubType>Component</SubType>
@@ -255,6 +301,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Adaptador\Pega\AppPega.res">
+      <DependentUpon>Adaptador\Pega\AppPega.os</DependentUpon>
+      <Deployment>DoNotDeploy</Deployment>
+    </Content>
     <Content Include="Adaptador\WebUSPS_CH.res">
       <DependentUpon>Adaptador\WebUSPS_CH.os</DependentUpon>
       <Deployment>DoNotDeploy</Deployment>

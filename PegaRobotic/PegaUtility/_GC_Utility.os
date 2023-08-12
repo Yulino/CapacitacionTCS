@@ -5,11 +5,20 @@
     <AssemblyReferences>
       <Assembly Value="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
       <Assembly Value="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+      <Assembly Value="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+      <Assembly Value="System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+      <Assembly Value="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
       <Assembly Value="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+      <Assembly Value="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <Assembly Value="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <Assembly Value="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
       <Assembly Value="OpenSpan, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e" />
+      <Assembly Value="OpenSpan.ApplicationFramework, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e" />
       <Assembly Value="OpenSpan.Automation, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e" />
       <Assembly Value="OpenSpan.Controls, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e" />
+      <Assembly Value="OpenSpan.Runtime.Core, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e" />
       <Assembly Value="OpenSpan.Script, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e" />
+      <Assembly Value="Pega.Controls, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e" />
     </AssemblyReferences>
     <DynamicAssemblyReferences />
     <FileReferences />
@@ -92,6 +101,12 @@
           <OpenSpan.DynamicMembers.DynamicMethodInfo dynamicType="Method" name="GetExcel" aliasName="GetExcel" visibility="DefaultOn" source="" blockTypeName="" returnType="System.Void">
             <param name="pathExcel" aliasName="pathExcel" paramType="System.String" isIn="False" isOut="False" position="0" />
             <param name="dtRegistros" aliasName="dtRegistros" paramType="System.Data.DataTable&amp;" isIn="False" isOut="True" position="1" />
+          </OpenSpan.DynamicMembers.DynamicMethodInfo>
+          <OpenSpan.DynamicMembers.DynamicMethodInfo dynamicType="Method" name="TakeScreenShotToDoc" aliasName="TakeScreenShotToDoc" visibility="DefaultOn" source="" blockTypeName="" returnType="System.Void">
+            <param name="strDocument" aliasName="strDocument" paramType="System.String" isIn="False" isOut="False" position="0" />
+          </OpenSpan.DynamicMembers.DynamicMethodInfo>
+          <OpenSpan.DynamicMembers.DynamicMethodInfo dynamicType="Method" name="GetUrl" aliasName="GetUrl" visibility="DefaultOn" source="" blockTypeName="" returnType="System.String">
+            <param name="texto" aliasName="texto" paramType="System.String" isIn="False" isOut="False" position="0" />
           </OpenSpan.DynamicMembers.DynamicMethodInfo>
         </Items>
       </Content>
@@ -259,13 +274,13 @@
     <OpenSpan.Controls.StringVariable Name="strSubjectError" Id="StringVariable-8DB99CCD36BEACB">
       <Value Value="" />
     </OpenSpan.Controls.StringVariable>
-    <OpenSpan.Controls.StringVariable Name="variable1" Id="StringVariable-8DB99D106A8A9DF">
+    <OpenSpan.Controls.StringVariable Name="strSubjectFin" Id="StringVariable-8DB99D106A8A9DF">
       <Value Value="" />
     </OpenSpan.Controls.StringVariable>
-    <OpenSpan.Controls.StringVariable Name="variable2" Id="StringVariable-8DB99D1078CD101">
+    <OpenSpan.Controls.StringVariable Name="strBodyFin" Id="StringVariable-8DB99D1078CD101">
       <Value Value="" />
     </OpenSpan.Controls.StringVariable>
-    <OpenSpan.Controls.StringVariable Name="variable3" Id="StringVariable-8DB99D1082F3F2F">
+    <OpenSpan.Controls.StringVariable Name="strPathAttach" Id="StringVariable-8DB99D1082F3F2F">
       <Value Value="" />
     </OpenSpan.Controls.StringVariable>
     <OpenSpan.Controls.StringVariable Name="variable4" Id="StringVariable-8DB99D108B7B582">
@@ -274,5 +289,15 @@
     <OpenSpan.Controls.StringVariable Name="variable5" Id="StringVariable-8DB99D1095D5D34">
       <Value Value="" />
     </OpenSpan.Controls.StringVariable>
+    <Pega.Controls.Variables.StringVariable Name="strPathWord" Id="StringVariable-8DB9AB33C7D9687">
+      <Value Value="" Encryption="1" />
+    </Pega.Controls.Variables.StringVariable>
+    <OpenSpan.ApplicationFramework.AssistedSignOn.AsoManager Name="asoMgr" Id="AsoManager-8DB9AB91889C556">
+      <Enable Value="False" />
+      <QueueActivity Value="False" />
+    </OpenSpan.ApplicationFramework.AssistedSignOn.AsoManager>
+    <Pega.Controls.Variables.IntegerVariable Name="nIntentos" Id="IntegerVariable-8DB9B4BF0C76AF8">
+      <Value Value="ￏ" Encryption="1" />
+    </Pega.Controls.Variables.IntegerVariable>
   </Component>
 </OpenSpanDesignDocument>

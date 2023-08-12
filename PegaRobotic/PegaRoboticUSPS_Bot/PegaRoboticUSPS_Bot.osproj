@@ -35,7 +35,7 @@
     <!-- Deployment -->
     <DeploymentPackage>True</DeploymentPackage>
     <DeploymentPath>bin\Debug\</DeploymentPath>
-    <DeploymentVersion>1.0</DeploymentVersion>
+    <DeploymentVersion>1.2</DeploymentVersion>
     <DeploymentVersionIncrement>True</DeploymentVersionIncrement>
     <DeploymentIncludeRunSettings>False</DeploymentIncludeRunSettings>
     <DeploymentTranslators>False</DeploymentTranslators>
@@ -118,6 +118,10 @@
     </Reference>
     <Reference Include="OpenSpan.Threading, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
       <HintPath>$(PEGA_STUDIO_PATH)\OpenSpan.Threading.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Pega.Controls, Version=19.1.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
+      <HintPath>$(PEGA_STUDIO_PATH)\Pega.Controls.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Pega.Interop, Version=10.0.0.0, Culture=neutral, PublicKeyToken=f5db91edc02d8c5e">
