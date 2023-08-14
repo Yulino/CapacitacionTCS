@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Globalization;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace Dynamic.Script_8DB990CF54D0282
 {
@@ -36,15 +37,14 @@ namespace Dynamic.Script_8DB990CF54D0282
                 .ToArray();
             string result = String.Join(",", extracted); // prints https://uibakery.io
 
-
-
             return result;
         }
-        public void GetExcel(string pathExcel, out System.Data.DataTable dtRegistros)
+        public bool GetExcel(string pathExcel, out System.Data.DataTable dtRegistros,out string mensaje)
         {
             DataTable dt = new DataTable();
             dtRegistros = new System.Data.DataTable();
-
+            mensaje = string.Empty;
+            var existeError = true;
             try
             {
                 dt.Columns.Add("ID", typeof(string));
@@ -57,6 +57,9 @@ namespace Dynamic.Script_8DB990CF54D0282
                 dt.Columns.Add("RESPUESTA 1", typeof(string));
                 dt.Columns.Add("RESPUESTA 2", typeof(string));
                 dt.Columns.Add("TIPO CUENTA", typeof(string));
+                dt.Columns.Add("ESTADO", typeof(string));
+                dt.Columns.Add("MENSAJE", typeof(string));
+
 
                 //Create COM Objects. Create a COM object for everything that is referenced
                 Excel.Application xlApp = new Excel.Application();
@@ -67,43 +70,95 @@ namespace Dynamic.Script_8DB990CF54D0282
                 int rowCount = xlRange.Rows.Count;
                 int colCount = xlRange.Columns.Count;
 
+                List<string> lista = new List<string>();
+                for (int x = 1; x <= rowCount; x++)
+                { 
+                    for (int j = 1; j <= colCount; j++)
+                    {
+                        object _xVal;
+
+                        _xVal = ((Excel.Range)xlRange.Cells[x, j]).Value2;
+                        if (!string.IsNullOrEmpty(_xVal.ToString()))
+                        {
+                            lista.Add(_xVal.ToString());
+                        }
+                    }
+                    break;
+                }
+
+                var ColumnasContatenadas = string.Join("|", lista);
+                
+
+                for (int i = 0; i < dt.Columns.Count; i++)
+                {
+                    if (dt.Columns[i].ColumnName != ColumnasContatenadas.Split('|')[i])
+                    {
+                        Console.WriteLine("Error");
+                        mensaje = "Cabecera Incorrecta";
+                        dtRegistros = null;
+                        return existeError = false;
+                        
+                        break;
+                    }
+                }
+
+                //int rowCount = xlRange.Rows.Count;
+                //int colCount = xlRange.Columns.Count;
+
                 //iterate over the rows and columns and print to the console as it appears in the file
                 //excel is not zero based!!
-                for (int i = 2; i <= rowCount; i++)
-                {
-                    
-                    DataRow row = dt.NewRow();
-                    row["ID"] = i - 1;
-                    row["IDIOMA"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 2]).Value2.ToString();
-                    row["NOMBRE USUARIO"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 3]).Value2.ToString();
-                    row["PASSWORD 1"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 4]).Value2.ToString();
-                    row["PASSWORD 2"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 5]).Value2.ToString();
-                    row["PRIMERA PREGUNTA"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 6]).Value2.ToString();
-                    row["SEGUNDA PREGUNTA"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 7]).Value2.ToString(); 
-                    row["RESPUESTA 1"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 8]).Value2.ToString();
-                    row["RESPUESTA 2"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 9]).Value2.ToString();
-                    row["TIPO CUENTA"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 10]).Value2.ToString();
-                    dt.Rows.Add(row);
 
+                if (existeError)
+                {
+                    for (int i = 2; i <= rowCount; i++)
+                    {
+                        var msj = string.Empty;
+                        DataRow row = dt.NewRow();
+                        row["ID"] = i - 1;
+
+                        row["IDIOMA"] = NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 2]).Value2) != string.Empty ? NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 2]).Value2) : msj = "IDIOMA" + "|" + msj;
+                        row["NOMBRE USUARIO"] = NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 3]).Value2) != string.Empty ? NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 3]).Value2) : msj = "NOMBRE USUARIO" + "|" + msj;
+                        row["PASSWORD 1"] = NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 4]).Value2) != string.Empty ? NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 4]).Value2) : msj = "PASSWORD 1" + "|" + msj;
+                        row["PASSWORD 2"] = NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 5]).Value2) != string.Empty ? NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 5]).Value2) : msj = "PASSWORD 2" + "|" + msj;
+                        row["PRIMERA PREGUNTA"] = NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 6]).Value2) != string.Empty ? NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 6]).Value2) : msj = "PRIMERA PREGUNTA" + "|" + msj;
+                        row["SEGUNDA PREGUNTA"] = NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 7]).Value2) != string.Empty ? NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 7]).Value2) : msj = "SEGUNDA PREGUNTA" + "|" + msj;
+                        row["RESPUESTA 1"] = NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 8]).Value2) != string.Empty ? NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 8]).Value2) : msj = "RESPUESTA 1" + "|" + msj;
+                        row["RESPUESTA 2"] = NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 9]).Value2) != string.Empty ? NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 9]).Value2) : msj = "RESPUESTA 2" + "|" + msj;
+                        row["TIPO CUENTA"] = NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 10]).Value2) != string.Empty ? NullToString(((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 10]).Value2) : msj = "TIPO CUENTA" + "|" + msj;
+                        row["ESTADO"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 11]).Value2 = msj == string.Empty ? "OK" : "ERROR";
+                        row["MENSAJE"] = ((Microsoft.Office.Interop.Excel.Range)xlWorksheet.Cells[i, 12]).Value2 = msj == string.Empty ? string.Empty : "El campo : " + msj + " se encuentra vacio.";
+
+                        dt.Rows.Add(row);
+
+                    }
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    Marshal.ReleaseComObject(xlRange);
+                    Marshal.ReleaseComObject(xlWorksheet);
+                    xlWorkbook.Save();
+                    xlWorkbook.Close();
+                    Marshal.ReleaseComObject(xlWorkbook);
+                    xlApp.Quit();
+                    Marshal.ReleaseComObject(xlApp);
+                    dtRegistros = dt.Copy();
+                   
                 }
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                Marshal.ReleaseComObject(xlRange);
-                Marshal.ReleaseComObject(xlWorksheet);
-                xlWorkbook.Close();
-                Marshal.ReleaseComObject(xlWorkbook);
-                xlApp.Quit();
-                Marshal.ReleaseComObject(xlApp);
-                dtRegistros = dt.Copy();
+               
             }
             catch (Exception ex)
             {
 
             }
+            mensaje = "Cabecera Correcta";
+            return existeError;
         }
         private void PutToClipboard(System.Drawing.Image Pic)
         {
             Clipboard.SetImage(Pic);
+        }
+        private string NullToString(object Value)
+        {
+            return Value == null ? "" : Value.ToString();
         }
         public void TakeScreenShotToDoc(string strDocument)
         {

@@ -74,6 +74,10 @@
       <HintPath>C:\Program Files (x86)\Pegasystems\Pega Robot Studio Plug-In\MailKit.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Microsoft.CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <HintPath>C:\PegaRobotic\Lib\Microsoft.Office.Interop.Excel.dll</HintPath>
       <Private>False</Private>

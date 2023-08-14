@@ -1,0 +1,11 @@
+13/08/2023 09:33:52 - Iniciando mi Primer Robot
+13/08/2023 14:00:07 - Iniciando la pagina usps
+13/08/2023 14:00:18 - PROCESO COMPLETADO
+13/08/2023 14:00:18 - Iniciando Robot
+13/08/2023 16:35:58 - Iniciando mi Primer Robot
+13/08/2023 16:35:58 - Iniciando la pagina usps
+13/08/2023 16:36:29 - PROCESO COMPLETADO
+13/08/2023 16:36:30 - Iniciando Robot
+13/08/2023 16:36:52 - Iniciando la pagina usps
+13/08/2023 16:40:49 - Iniciando mi Primer Robot
+13/08/2023 16:40:49 - Iniciando la pagina usps
